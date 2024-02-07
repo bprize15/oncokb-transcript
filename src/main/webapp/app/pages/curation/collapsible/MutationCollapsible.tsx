@@ -131,8 +131,7 @@ const MutationCollapsible = ({
           <span className={'collapsible-action'}>
             <GeneHistoryTooltip key={'gene-history-tooltip'} historyData={parsedHistoryList} location={getMutationName(mutation)} />
             <CommentIcon
-              id={mutation.name_uuid}
-              comments={mutation.name_comments || []}
+              firebasePath={`${mutationFirebasePath}/name_comments`}
               onCreateComment={content =>
                 handleCreateComment(`${mutationFirebasePath}/name_comments`, content, mutation.name_comments?.length || 0)
               }
@@ -172,8 +171,7 @@ const MutationCollapsible = ({
             borderLeftColor={NestLevelColor[NestLevelMapping[NestLevelType.SOMATIC]]}
             action={
               <CommentIcon
-                id={mutation.mutation_effect_uuid}
-                comments={mutation.mutation_effect_comments || []}
+                firebasePath={`${mutationFirebasePath}/mutation_effect_comments`}
                 onCreateComment={content =>
                   handleCreateComment(
                     `${mutationFirebasePath}/mutation_effect_comments`,
@@ -234,7 +232,7 @@ const MutationCollapsible = ({
               name="description"
             />
             <div className="mb-2">
-              <AutoParseRefField summary={mutation.mutation_effect.description} />
+              <AutoParseRefField firebasePath={`${mutationFirebasePath}/mutation_effect/description`} />
             </div>
           </Collapsible>
           {mutation.mutation_effect.germline && (
@@ -245,8 +243,7 @@ const MutationCollapsible = ({
               borderLeftColor={NestLevelColor[NestLevelMapping[NestLevelType.GERMLINE]]}
               action={
                 <CommentIcon
-                  id={`${mutation.mutation_effect_uuid}_germline`}
-                  comments={mutation.mutation_effect.germline_comments || []}
+                  firebasePath={`${mutationFirebasePath}/mutation_effect/germline_comments`}
                   onCreateComment={content =>
                     handleCreateComment(
                       `${mutationFirebasePath}/mutation_effect/germline_comments`,
@@ -397,8 +394,7 @@ const MutationCollapsible = ({
                       />
                     </span>
                     <CommentIcon
-                      id={tumor.cancerTypes_uuid}
-                      comments={tumor.cancerTypes_comments || []}
+                      firebasePath={`${cancerTypeFirebasePath}/cancerTypes_comments`}
                       onCreateComment={content =>
                         handleCreateComment(
                           `${cancerTypeFirebasePath}/cancerTypes_comments`,
@@ -464,8 +460,7 @@ const MutationCollapsible = ({
                     borderLeftColor={NestLevelColor[NestLevelMapping[NestLevelType.DIAGNOSTIC]]}
                     action={
                       <CommentIcon
-                        id={tumor.diagnostic_uuid}
-                        comments={tumor.diagnostic_comments || []}
+                        firebasePath={`${cancerTypeFirebasePath}/diagnostic_comments`}
                         onCreateComment={content =>
                           handleCreateComment(
                             `${cancerTypeFirebasePath}/diagnostic_comments`,
@@ -496,7 +491,7 @@ const MutationCollapsible = ({
                       name="evidenceDescription"
                     />
                     <div className="mb-2">
-                      <AutoParseRefField summary={tumor.diagnostic.description} />
+                      <AutoParseRefField firebasePath={`${cancerTypeFirebasePath}/diagnostic/description`} />
                     </div>
                   </Collapsible>
                   <Collapsible
@@ -506,8 +501,7 @@ const MutationCollapsible = ({
                     borderLeftColor={NestLevelColor[NestLevelMapping[NestLevelType.PROGNOSTIC]]}
                     action={
                       <CommentIcon
-                        id={tumor.prognostic_uuid}
-                        comments={tumor.prognostic_comments || []}
+                        firebasePath={`${cancerTypeFirebasePath}/prognostic_comments`}
                         onCreateComment={content =>
                           handleCreateComment(
                             `${cancerTypeFirebasePath}/prognostic_comments`,
@@ -538,7 +532,7 @@ const MutationCollapsible = ({
                       name="evidenceDescription"
                     />
                     <div className="mb-2">
-                      <AutoParseRefField summary={tumor.prognostic.description} />
+                      <AutoParseRefField firebasePath={`${cancerTypeFirebasePath}/prognostic/description`} />
                     </div>
                   </Collapsible>
                   {tumor.TIs.reduce((accumulator, ti, tiIndex) => {
@@ -576,8 +570,7 @@ const MutationCollapsible = ({
                                   />
                                   <>
                                     <CommentIcon
-                                      id={treatment.name_uuid}
-                                      comments={treatment.name_comments || []}
+                                      firebasePath={`${therapyFirebasePath}/name_comments`}
                                       onCreateComment={content =>
                                         handleCreateComment(
                                           `${therapyFirebasePath}/name_comments`,
@@ -645,7 +638,7 @@ const MutationCollapsible = ({
                                 name="evidenceDescription"
                               />
                               <div className="mb-2">
-                                <AutoParseRefField summary={treatment.description} />
+                                <AutoParseRefField firebasePath={`${therapyFirebasePath}/description`} />
                               </div>
                             </Collapsible>
                             <ModifyTherapyModal

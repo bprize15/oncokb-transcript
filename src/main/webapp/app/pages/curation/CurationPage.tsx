@@ -43,6 +43,7 @@ import AddMutationModal from 'app/shared/modal/AddMutationModal';
 import CommentIcon from 'app/shared/icons/CommentIcon';
 import { HgncLink } from 'app/shared/links/HgncLink';
 import ReviewPage from './review/ReviewPage';
+import { get, onValue, ref } from '@firebase/database';
 
 export interface ICurationPageProps extends StoreProps, RouteComponentProps<{ hugoSymbol: string }> {}
 
@@ -58,6 +59,9 @@ const CurationPage = (props: ICurationPageProps) => {
   const firebaseGenePath = getFirebasePath('GENE', hugoSymbol);
   const firebaseHistoryPath = getFirebasePath('HISTORY', hugoSymbol);
   const firebaseMetaPath = getFirebasePath('META_GENE', hugoSymbol);
+
+  const [geneName, setGeneName] = useState('');
+  const [mutationList, setMutationList] = useState<Mutation[]>([]);
 
   const [isReviewing, setIsReviewing] = useState(false);
   const [isReviewFinished, setIsReviewFinished] = useState(false);
@@ -168,8 +172,11 @@ const CurationPage = (props: ICurationPageProps) => {
   useEffect(() => {
     if (props.firebaseInitSuccess) {
       props.searchGeneEntities({ query: hugoSymbol, exact: true });
+
+      get(ref(props.firebaseDb, `${firebaseGenePath}/mutations`)).then(snapshot => setMutationList(snapshot.val() || []));
+
       const cleanupCallbacks = [];
-      cleanupCallbacks.push(props.addListener(firebaseGenePath));
+      cleanupCallbacks.push(onValue(ref(props.firebaseDb, `${firebaseGenePath}/name`), snapshot => setGeneName(snapshot.val())));
       cleanupCallbacks.push(props.addHistoryListener(firebaseHistoryPath));
       cleanupCallbacks.push(props.addMetaListener(firebaseMetaPath));
       cleanupCallbacks.push(() => props.updateCollaborator(hugoSymbol, false));
@@ -192,17 +199,17 @@ const CurationPage = (props: ICurationPageProps) => {
   }, [props.geneEntities]);
 
   useEffect(() => {
-    if (props.metaCollaboratorsData && props.data?.name) {
+    if (props.metaCollaboratorsData && geneName) {
       props.updateCollaborator(hugoSymbol, true).catch(error => {
         notifyError(error);
         history.push(PAGE_ROUTE.CURATION);
       });
     }
-  }, [props.metaCollaboratorsData, props.data]);
+  }, [props.metaCollaboratorsData, geneName]);
 
   useEffect(() => {
     filterMutations();
-  }, [props.data, mutationFilter, oncogenicityFilter, mutationEffectFilter, txLevelFilter]);
+  }, [mutationList, mutationFilter, oncogenicityFilter, mutationEffectFilter, txLevelFilter]);
 
   useEffect(() => {
     if (props.mutationSummaryStats) {
@@ -250,7 +257,7 @@ const CurationPage = (props: ICurationPageProps) => {
 
   function filterMutations() {
     setMutations(
-      (props.data?.mutations || []).reduce<FirebaseMutation[]>((filteredMutations, mutation, index) => {
+      mutationList.reduce<FirebaseMutation[]>((filteredMutations, mutation, index) => {
         const matchesName = !mutationFilter || getMutationName(mutation).toLowerCase().includes(mutationFilter.toLowerCase());
 
         const selectedOncogenicities = oncogenicityFilter.filter(filter => filter.selected);
@@ -337,20 +344,19 @@ const CurationPage = (props: ICurationPageProps) => {
     return <>{button}</>;
   };
 
-  return !!props.data && drugList.length > 0 && !props.loadingGenes ? (
+  return geneName && mutationList.length > 0 && drugList.length > 0 && !props.loadingGenes ? (
     <>
       <div>
         <Row className={'mb-2'}>
           <Col className={'d-flex justify-content-between flex-row flex-nowrap align-items-end'}>
             <div className="d-flex align-items-end all-children-margin">
               <span style={{ fontSize: '3rem', lineHeight: 1 }} className={'mr-2'}>
-                {props.data.name}
+                {geneName}
               </span>
               <CommentIcon
-                id={`${hugoSymbol}_curation_page`}
-                comments={props.data.name_comments || []}
-                onCreateComment={content =>
-                  handleCreateComment(`${firebaseGenePath}/name_comments`, content, props.data.name_comments?.length || 0)
+                firebasePath={`${firebaseGenePath}/name_comments`}
+                onCreateComment={(content, currentCommentsLength) =>
+                  handleCreateComment(`${firebaseGenePath}/name_comments`, content, currentCommentsLength)
                 }
                 onDeleteComments={indices => handleDeleteComments(`${firebaseGenePath}/name_comments`, indices)}
                 onResolveComment={index => handleResolveComment(`${firebaseGenePath}/name_comments/${index}`)}
@@ -391,14 +397,10 @@ const CurationPage = (props: ICurationPageProps) => {
                   <span className="ml-2">
                     <span className="font-weight-bold mr-2">External Links:</span>
                     <WithSeparator separator={InlineDivider}>
-                      <a href={`https://cbioportal.mskcc.org/ln?q=${props.data.name}`} target="_blank" rel="noopener noreferrer">
+                      <a href={`https://cbioportal.mskcc.org/ln?q=${geneName}`} target="_blank" rel="noopener noreferrer">
                         {CBIOPORTAL} <ExternalLinkIcon />
                       </a>
-                      <a
-                        href={`http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=${props.data.name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href={`http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=${geneName}`} target="_blank" rel="noopener noreferrer">
                         {COSMIC} <ExternalLinkIcon />
                       </a>
                     </WithSeparator>
@@ -443,10 +445,9 @@ const CurationPage = (props: ICurationPageProps) => {
                       <GeneHistoryTooltip historyData={parsedHistoryList} location={'Gene Summary'} />
                       <div className="mr-3" />
                       <CommentIcon
-                        id={props.data.summary_uuid}
-                        comments={props.data.summary_comments || []}
-                        onCreateComment={content =>
-                          handleCreateComment(`${firebaseGenePath}/summary_comments`, content, props.data.summary_comments?.length || 0)
+                        firebasePath={`${firebaseGenePath}/summary_comments`}
+                        onCreateComment={(content, currentCommentsLength) =>
+                          handleCreateComment(`${firebaseGenePath}/summary_comments`, content, currentCommentsLength)
                         }
                         onDeleteComments={indices => handleDeleteComments(`${firebaseGenePath}/summary_comments`, indices)}
                         onResolveComment={index => handleResolveComment(`${firebaseGenePath}/summary_comments/${index}`)}
@@ -463,14 +464,9 @@ const CurationPage = (props: ICurationPageProps) => {
                       <GeneHistoryTooltip historyData={parsedHistoryList} location={'Germline Gene Summary'} />
                       <div className="mr-3" />
                       <CommentIcon
-                        id={props.data.germline_summary_uuid}
-                        comments={props.data.germline_summary_comments || []}
-                        onCreateComment={content =>
-                          handleCreateComment(
-                            `${firebaseGenePath}/germline_summary_comments`,
-                            content,
-                            props.data.germline_summary_comments?.length || 0
-                          )
+                        firebasePath={`${firebaseGenePath}/germline_summary_comments`}
+                        onCreateComment={(content, currentCommentsLength) =>
+                          handleCreateComment(`${firebaseGenePath}/germline_summary_comments`, content, currentCommentsLength)
                         }
                         onDeleteComments={indices => handleDeleteComments(`${firebaseGenePath}/germline_summary_comments`, indices)}
                         onResolveComment={index => handleResolveComment(`${firebaseGenePath}/germline_summary_comments/${index}`)}
@@ -507,14 +503,9 @@ const CurationPage = (props: ICurationPageProps) => {
                       <GeneHistoryTooltip historyData={parsedHistoryList} location={'Gene Background'} />
                       <div className="mr-3" />
                       <CommentIcon
-                        id={props.data.background_uuid}
-                        comments={props.data.background_comments || []}
-                        onCreateComment={content =>
-                          handleCreateComment(
-                            `${firebaseGenePath}/background_comments`,
-                            content,
-                            props.data.background_comments?.length || 0
-                          )
+                        firebasePath={`${firebaseGenePath}/background_comments`}
+                        onCreateComment={(content, currentCommentsLength) =>
+                          handleCreateComment(`${firebaseGenePath}/background_comments`, content, currentCommentsLength)
                         }
                         onDeleteComments={indices => handleDeleteComments(`${firebaseGenePath}/background_comments`, indices)}
                         onResolveComment={index => handleResolveComment(`${firebaseGenePath}/background_comments/${index}`)}
@@ -524,11 +515,11 @@ const CurationPage = (props: ICurationPageProps) => {
                   }
                 />
                 <div className="mb-2">
-                  <AutoParseRefField summary={props.data.background} />
+                  <AutoParseRefField firebasePath={`${firebaseGenePath}/background`} />
                 </div>
               </Col>
             </Row>
-            {props.data.mutations && (
+            {mutationList.length > 0 && (
               <div className={'mb-5'}>
                 <Row>
                   <Col>
@@ -545,9 +536,7 @@ const CurationPage = (props: ICurationPageProps) => {
                           <FaPlus />
                           <span className="ml-2">Add</span>
                         </Button>
-                        {mutationsAreFiltered && (
-                          <span>{`Showing ${mutations.length} of ${props.data.mutations.length} matching the search`}</span>
-                        )}
+                        {mutationsAreFiltered && <span>{`Showing ${mutations.length} of ${mutationList.length} matching the search`}</span>}
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <FaFilter
@@ -772,8 +761,6 @@ const mapStoreToProps = ({
   searchGeneEntities: geneStore.searchEntities,
   geneEntities: geneStore.entities,
   loadingGenes: geneStore.loading,
-  addListener: firebaseGeneStore.addListener,
-  data: firebaseGeneStore.data,
   update: firebaseGeneStore.update,
   updateMutations: firebaseGeneStore.pushToArrayFront,
   updateReviewableContent: firebaseGeneStore.updateReviewableContent,
@@ -793,6 +780,7 @@ const mapStoreToProps = ({
   account: authStore.account,
   firebaseInitSuccess: firebaseStore.firebaseInitSuccess,
   fullName: authStore.fullName,
+  firebaseDb: firebaseStore.firebaseDb,
 });
 
 type StoreProps = ReturnType<typeof mapStoreToProps>;

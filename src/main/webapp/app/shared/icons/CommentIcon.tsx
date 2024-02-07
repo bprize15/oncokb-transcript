@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Comment } from 'app/shared/model/firebase/firebase.model';
 import { Button, Col, Container, Input, InputGroup, ListGroup, ListGroupItem, Row } from 'reactstrap';
@@ -14,26 +14,28 @@ import { CommentStore } from 'app/stores/firebase/firebase.comment.store';
 import { faComment as farComment } from '@fortawesome/free-regular-svg-icons';
 import { faComment as fasComment } from '@fortawesome/free-solid-svg-icons';
 import { GREY } from 'app/config/colors';
+import { onValue, ref } from '@firebase/database';
 
 function isCommentResolved(comment: Comment) {
   return typeof comment.resolved === 'boolean' ? comment.resolved : comment.resolved === 'true';
 }
 
 export interface ICommentIconProps extends StoreProps {
-  id: string;
+  firebasePath: string;
   size?: SizeProp;
-  comments: Comment[];
-  onCreateComment: (content: string) => void;
+  onCreateComment: (content: string, currentLength: number) => void;
   onResolveComment: (index: number) => void;
   onUnresolveComment: (index: number) => void;
   onDeleteComments: (indices: number[]) => void;
 }
 
 const CommentIcon = observer((props: ICommentIconProps) => {
+  const [comments, setComments] = useState<Comment[]>([]);
+
   let color: string;
-  if (!props.comments || props.comments.length === 0) {
+  if (comments.length === 0) {
     color = 'black';
-  } else if (props.comments.some(comment => !isCommentResolved(comment))) {
+  } else if (comments.some(comment => !isCommentResolved(comment))) {
     color = 'gold';
   } else {
     color = 'green';
@@ -41,16 +43,28 @@ const CommentIcon = observer((props: ICommentIconProps) => {
 
   const timeoutId = useRef(null);
 
+  useEffect(() => {
+    if (props.firebaseInitSuccess) {
+      const unsubscribe = onValue(ref(props.firebaseDb, props.firebasePath), snapshot => {
+        setComments(snapshot.val() || []);
+      });
+
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [props.firebaseInitSuccess]);
+
   function handleMouseEnter() {
-    if (props.commentStore.openCommentsId !== props.id) {
-      runInAction(() => props.commentStore.setOpenCommentsId(props.id));
+    if (props.commentStore.openCommentsId !== props.firebasePath) {
+      runInAction(() => props.commentStore.setOpenCommentsId(props.firebasePath));
     }
     clearTimeout(timeoutId.current);
   }
 
   function handleMouseLeave() {
     const id = setTimeout(() => {
-      if (props.id === props.commentStore.openCommentsId) {
+      if (props.firebasePath === props.commentStore.openCommentsId) {
         runInAction(() => props.commentStore.setOpenCommentsId(null));
       }
     }, CLOSE_TOOLTIP_DURATION_MILLISECONDS);
@@ -68,12 +82,12 @@ const CommentIcon = observer((props: ICommentIconProps) => {
         overlayInnerStyle={{ minWidth: '400px', padding: 0 }}
         placement="left"
         destroyTooltipOnHide
-        visible={props.id === props.commentStore.openCommentsId}
+        visible={props.firebasePath === props.commentStore.openCommentsId}
         overlay={
           <CommentBox
             commentStore={props.commentStore}
-            openCommentsId={props.id}
-            comments={props.comments}
+            openCommentsId={props.firebasePath}
+            comments={comments}
             onCreateComment={props.onCreateComment}
             onResolveComment={props.onResolveComment}
             onUnresolveComment={props.onUnresolveComment}
@@ -84,9 +98,9 @@ const CommentIcon = observer((props: ICommentIconProps) => {
         <div>
           <FontAwesomeIcon
             size={props.size}
-            id={props.id}
-            icon={props.comments?.length > 0 ? fasComment : farComment}
-            color={props.comments?.length > 0 ? color : GREY}
+            id={props.firebasePath}
+            icon={comments.length > 0 ? fasComment : farComment}
+            color={comments.length > 0 ? color : GREY}
           />
         </div>
       </DefaultTooltip>
@@ -98,7 +112,7 @@ export interface ICommentBoxProps {
   commentStore: CommentStore;
   comments: Comment[];
   openCommentsId: string;
-  onCreateComment: (content: string) => void;
+  onCreateComment: (content: string, currentLength: number) => void;
   onResolveComment: (index: number) => void;
   onUnresolveComment: (index: number) => void;
   onDeleteComments: (indices: number[]) => void;
@@ -161,7 +175,7 @@ const CommentBox = observer((props: ICommentBoxProps) => {
         commentStore={props.commentStore}
         onCreateComment={content => {
           runInAction(() => props.commentStore.setOpenCommentsScrollPosition(0));
-          props.onCreateComment(content);
+          props.onCreateComment(content, props.comments.length);
         }}
       />
     </>
@@ -271,8 +285,10 @@ const CommentItem = observer((props: ICommentItemProps) => {
   );
 });
 
-const mapStoreToProps = ({ commentStore }: IRootStore) => ({
+const mapStoreToProps = ({ commentStore, firebaseStore }: IRootStore) => ({
   commentStore,
+  firebaseDb: firebaseStore.firebaseDb,
+  firebaseInitSuccess: firebaseStore.firebaseInitSuccess,
 });
 
 type StoreProps = Partial<ReturnType<typeof mapStoreToProps>>;

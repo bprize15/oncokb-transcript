@@ -191,9 +191,8 @@ const VusTable = ({
           <Container>
             <Row className={classNames('d-flex', 'align-items-center', 'collapsible-action')}>
               <CommentIcon
-                id={cell.original.uuid}
+                firebasePath={`${firebaseVusPath}/${cell.original.uuid}/name_comments`}
                 key={cell.original.uuid}
-                comments={cell.original.name_comments}
                 onCreateComment={async content => {
                   await handleCreateComment(cell.original.uuid, content);
                 }}
