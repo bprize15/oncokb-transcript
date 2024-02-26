@@ -6,18 +6,15 @@ import { ViewportList } from 'react-viewport-list';
 import { IRootStore } from 'app/stores';
 import LoadingIndicator, { LoaderSize } from 'app/oncokb-commons/components/loadingIndicator/LoadingIndicator';
 import {
-  CANCER_TYPE_THERAPY_INDENTIFIER,
   CBIOPORTAL,
   CHECKBOX_LABEL_LEFT_MARGIN,
   COSMIC,
-  GERMLINE_INHERITANCE_MECHANISM,
   GET_ALL_DRUGS_PAGE_SIZE,
   PAGE_ROUTE,
-  PATHOGENICITY,
   PENETRANCE,
 } from 'app/config/constants/constants';
 import { PubmedGeneLink } from 'app/shared/links/PubmedGeneLink';
-import { InlineDivider, PubmedGeneArticlesLink } from 'app/shared/links/PubmedGeneArticlesLink';
+import { InlineDivider } from 'app/shared/links/PubmedGeneArticlesLink';
 import { getSectionClassName, getUserFullName } from 'app/shared/util/utils';
 import ExternalLinkIcon from 'app/shared/icons/ExternalLinkIcon';
 import WithSeparator from 'react-with-separator';
@@ -33,7 +30,7 @@ import VusTable from '../../shared/table/VusTable';
 import OncoKBSidebar from 'app/components/sidebar/OncoKBSidebar';
 import Tabs from 'app/components/tabs/tabs';
 import CurationHistoryTab from 'app/components/tabs/CurationHistoryTab';
-import { FaFilter, FaPlus } from 'react-icons/fa';
+import { FaFilter } from 'react-icons/fa';
 import _ from 'lodash';
 import MutationCollapsible from './collapsible/MutationCollapsible';
 import { IDrug } from 'app/shared/model/drug.model';
@@ -56,7 +53,7 @@ export type FirebaseMutation = Mutation & {
 
 const CurationPage = (props: ICurationPageProps) => {
   const history = useHistory();
-  const hugoSymbol = props.match.params.hugoSymbol;
+  const hugoSymbol = props.match.params.hugoSymbol.toUpperCase();
   const firebaseGenePath = getFirebasePath('GENE', hugoSymbol);
   const firebaseHistoryPath = getFirebasePath('HISTORY', hugoSymbol);
   const firebaseMetaPath = getFirebasePath('META_GENE', hugoSymbol);
@@ -89,6 +86,12 @@ const CurationPage = (props: ICurationPageProps) => {
   function initFilterCheckboxState(options: string[]) {
     return options.map(option => ({ label: option, selected: false, disabled: false }));
   }
+
+  const isGeneCurated = useMemo(() => {
+    if (props.metaListData) {
+      return Object.keys(props.metaListData).includes(hugoSymbol);
+    }
+  }, [props.metaListData]);
 
   const mutationsAreFiltered = useMemo(() => {
     return (
@@ -178,6 +181,7 @@ const CurationPage = (props: ICurationPageProps) => {
       cleanupCallbacks.push(props.addListener(firebaseGenePath));
       cleanupCallbacks.push(props.addHistoryListener(firebaseHistoryPath));
       cleanupCallbacks.push(props.addMetaListener(firebaseMetaPath));
+      cleanupCallbacks.push(props.addMetaListListener());
       cleanupCallbacks.push(() => props.updateCollaborator(hugoSymbol, false));
       cleanupCallbacks.push(props.addMetaCollaboratorsListener());
       return () => {
@@ -591,7 +595,9 @@ const mapStoreToProps = ({
   mutationSummaryStats: firebaseGeneStore.mutationLevelMutationSummaryStats,
   addMetaListener: firebaseMetaStore.addListener,
   addMetaCollaboratorsListener: firebaseMetaStore.addMetaCollaboratorsListener,
+  addMetaListListener: firebaseMetaStore.addMetaListListener,
   metaData: firebaseMetaStore.data,
+  metaListData: firebaseMetaStore.metaList,
   getDrugs: drugStore.getEntities,
   metaCollaboratorsData: firebaseMetaStore.metaCollaborators,
   updateCollaborator: firebaseMetaStore.updateCollaborator,
