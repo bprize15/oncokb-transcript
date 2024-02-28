@@ -13,41 +13,60 @@ export interface ICurationAbstractsTabProps extends StoreProps {
   drugList: IDrug[];
 }
 
-type AbstractData = {
+type DisplayedReferenceData = {
   reference: ParsedRef;
   path: string;
+  depth: number;
+};
+
+type ReferenceData = {
+  [referenceName: string]: {
+    minDepth: number;
+    data: DisplayedReferenceData[];
+  };
 };
 
 /* eslint-disable no-console */
-function CurationAbstractsTab({ hugoSymbol, geneData, addGeneListener, drugList }: ICurationAbstractsTabProps) {
+function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList }: ICurationAbstractsTabProps) {
   const firebaseGenePath = getFirebasePath('GENE', hugoSymbol);
 
-  const abstracts = useMemo(() => {
+  const allReferences = useMemo(() => {
     if (!geneData) {
-      return [];
+      return {};
     }
-    return findAbstracts(geneData);
+    const references: ReferenceData = {};
+    findReferences(references, geneData);
+    console.log(references);
+    return references;
   }, [geneData]);
 
-  const [displayedAbstracts, setDisplayedAbstracts] = useState<AbstractData[]>(abstracts);
+  const [inputValue, setInputValue] = useState('');
+  const [displayedReferences, setDisplayedReferences] = useState<DisplayedReferenceData[]>([]);
 
-  function findAbstracts(obj, path = '') {
-    let matches: AbstractData[] = [];
-
+  function findReferences(references: ReferenceData, obj, path = '', depth = 0) {
     for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
         const newPath = path ? `${path}, ${key}` : key;
 
         if (typeof obj[key] === 'string') {
-          const references = parseTextForReferences(obj[key]);
-          references.forEach(reference => matches.push({ reference, path: newPath }));
+          const newReferences = parseTextForReferences(obj[key]);
+          newReferences.forEach(newReference => {
+            const fullNewReferenceName = `${newReference.prefix}${newReference.content}`;
+
+            if (references[fullNewReferenceName]) {
+              references[fullNewReferenceName].data.push({ reference: newReference, path: newPath, depth });
+            } else {
+              references[fullNewReferenceName] = {
+                minDepth: depth,
+                data: [{ reference: newReference, path: newPath, depth }],
+              };
+            }
+          });
         } else if (typeof obj[key] === 'object' && key !== 'name_comments' && !key.endsWith('_review')) {
-          matches = matches.concat(findAbstracts(obj[key], newPath));
+          findReferences(references, obj[key], newPath, depth + 1);
         }
       }
     }
-
-    return matches;
   }
 
   function parseLocationPath(path: string) {
@@ -92,19 +111,28 @@ function CurationAbstractsTab({ hugoSymbol, geneData, addGeneListener, drugList 
     };
   }, [firebaseGenePath]);
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const newValue = event.target.value;
-    setDisplayedAbstracts(
-      abstracts.filter(ref => `${ref.reference.prefix}${ref.reference.content}`.toLowerCase().includes(newValue.toLowerCase()))
-    );
-  }
+  useEffect(() => {
+    const allReferenceKeys = Object.keys(allReferences);
+    const newDisplayedReferenceKeys = allReferenceKeys.filter(refKey => refKey.toLowerCase().includes(inputValue.toLowerCase()));
+
+    const newDisplayedReferencesValues = newDisplayedReferenceKeys.map(refKey => allReferences[refKey]);
+    newDisplayedReferencesValues.sort((a, b) => a.minDepth - b.minDepth);
+
+    const newDisplayedReferences = newDisplayedReferencesValues.reduce((accumulator: DisplayedReferenceData[], currentValue) => {
+      const data = currentValue.data;
+      data.sort((a, b) => a.depth - b.depth);
+      return accumulator.concat(data);
+    }, []);
+
+    setDisplayedReferences(newDisplayedReferences);
+  }, [allReferences, inputValue]);
 
   return (
     <div>
       <Row className="mb-3">
-        <Input onChange={handleInputChange} placeholder="Enter abstract" />
+        <Input value={inputValue} onChange={event => setInputValue(event.target.value)} placeholder="Enter abstract" />
       </Row>
-      {displayedAbstracts.map(data => {
+      {displayedReferences.map(data => {
         return (
           <div key={`${data.reference.content}_${data.path}`}>
             <Row className="mb-2">
@@ -133,4 +161,4 @@ const mapStoreToProps = ({ firebaseGeneStore }: IRootStore) => ({
 
 type StoreProps = Partial<ReturnType<typeof mapStoreToProps>>;
 
-export default componentInject(mapStoreToProps)(CurationAbstractsTab);
+export default componentInject(mapStoreToProps)(CurationReferencesTab);
