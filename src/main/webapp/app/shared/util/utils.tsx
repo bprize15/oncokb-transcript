@@ -12,6 +12,7 @@ import { IUser } from '../model/user.model';
 import { CancerType } from '../model/firebase/firebase.model';
 import { ITreatment } from 'app/shared/model/treatment.model';
 import _ from 'lodash';
+import { ParsedRef, parseReferences } from 'app/oncokb-commons/components/RefComponent';
 
 export const getCancerTypeName = (cancerType: ICancerType | CancerType, omitCode = false): string => {
   let name = '';
@@ -272,4 +273,22 @@ export function isNumeric(value: string) {
 
 export function notNullOrUndefined(val) {
   return val !== null && val !== undefined;
+}
+
+/* eslint-disable @typescript-eslint/prefer-regexp-exec */
+export function parseTextForReferences(text: string) {
+  let content: Array<ParsedRef> = [];
+
+  const regex = /(\(.*?[PMID|NCT|Abstract].*?\))/i;
+
+  const parts = text.split(regex);
+  parts.forEach((part: string) => {
+    if (part.match(regex)) {
+      const parsedRef = parseReferences(part, true);
+      parsedRef.filter(ref => ref.link).forEach(ref => content.push(ref));
+    }
+  });
+
+  content = _.uniqBy(content, 'content');
+  return content;
 }

@@ -43,6 +43,7 @@ import ReviewPage from './review/ReviewPage';
 import AddMutationModal from 'app/shared/modal/AddMutationModal';
 import AddMutationButton from './button/AddMutationButton';
 import Mutations from 'app/pages/curation/Mutations';
+import CurationAbstractsTab from 'app/components/tabs/CurationAbstractsTab';
 
 export interface ICurationPageProps extends StoreProps, RouteComponentProps<{ hugoSymbol: string }> {}
 
@@ -565,6 +566,10 @@ const CurationPage = (props: ICurationPageProps) => {
             {
               title: 'History',
               content: <CurationHistoryTab historyData={props.historyData} />,
+            },
+            {
+              title: 'Abstracts',
+              content: <CurationAbstractsTab hugoSymbol={hugoSymbol} drugList={drugList} />,
             },
           ]}
         />
