@@ -26,7 +26,6 @@ type ReferenceData = {
   };
 };
 
-/* eslint-disable no-console */
 function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList }: ICurationAbstractsTabProps) {
   const firebaseGenePath = getFirebasePath('GENE', hugoSymbol);
 
@@ -36,7 +35,6 @@ function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList
     }
     const references: ReferenceData = {};
     findReferences(references, geneData);
-    console.log(references);
     return references;
   }, [geneData]);
 
@@ -71,33 +69,30 @@ function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList
 
   function parseLocationPath(path: string) {
     let mutationIndex = -1;
-    let output = path.replace(/mutations, (\d)+/g, (match, index: string) => {
+    let output = path.replace(/mutations, (\d+)/g, (match, index: string) => {
       mutationIndex = Number(index);
       return getMutationName(geneData.mutations[mutationIndex]);
     });
 
     let tumorIndex = -1;
-    output = output.replace(/tumors, (\d)+/g, (match, index: string) => {
-      tumorIndex = Number(index);
-      const tumor = geneData.mutations[mutationIndex].tumors?.[tumorIndex];
-      if (!tumor) {
-        // look into how this is happening
-        return match;
-      }
-      return getCancerTypesNameWithExclusion(tumor.cancerTypes, tumor.excludedCancerTypes || [], true);
-    });
+    if (mutationIndex > -1) {
+      output = output.replace(/tumors, (\d+)/g, (match, index: string) => {
+        tumorIndex = Number(index);
+        const tumor = geneData.mutations[mutationIndex].tumors[tumorIndex];
+        return getCancerTypesNameWithExclusion(tumor.cancerTypes, tumor.excludedCancerTypes || [], true);
+      });
+    }
 
-    output = output.replace(/TIs, (\d)+, treatments, (\d)+/g, (match, tiIndex, treatmentIndex) => {
-      const treatmentName = geneData.mutations[mutationIndex].tumors?.[tumorIndex]?.TIs?.[tiIndex].treatments?.[treatmentIndex].name;
-      if (!treatmentName) {
-        return match;
-      }
-      return getTxName(drugList, treatmentName);
-    });
+    if (tumorIndex > -1) {
+      output = output.replace(/TIs, (\d+), treatments, (\d+)/g, (match, tiIndex, treatmentIndex) => {
+        const treatmentName = geneData.mutations[mutationIndex].tumors[tumorIndex].TIs[tiIndex].treatments[treatmentIndex].name;
+        return getTxName(drugList, treatmentName);
+      });
+    }
 
     output = output.replace('background', 'Background');
     output = output.replace('mutation_effect', 'Mutation Effect');
-    output = output.replace('description', 'Description of Evidence');
+    output = output.replace('description', 'Description');
     output = output.replace('short', 'Additional Information');
 
     return output;
