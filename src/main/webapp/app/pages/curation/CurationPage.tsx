@@ -183,8 +183,8 @@ const CurationPage = (props: ICurationPageProps) => {
       const cleanupCallbacks = [];
       cleanupCallbacks.push(props.addListener(firebaseGenePath));
       cleanupCallbacks.push(props.addHistoryListener(firebaseHistoryPath));
-      cleanupCallbacks.push(props.addMetaListener(firebaseMetaPath));
-      cleanupCallbacks.push(props.addMetaListListener());
+      // cleanupCallbacks.push(props.addMetaListener(firebaseMetaPath));
+      // cleanupCallbacks.push(props.addMetaListListener());
       cleanupCallbacks.push(() => props.updateCollaborator(hugoSymbol, false));
       cleanupCallbacks.push(props.addMetaCollaboratorsListener());
       return () => {

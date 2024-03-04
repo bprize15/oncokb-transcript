@@ -1,9 +1,11 @@
 import { ParsedRef } from 'app/oncokb-commons/components/RefComponent';
 import { IDrug } from 'app/shared/model/drug.model';
+import { Gene } from 'app/shared/model/firebase/firebase.model';
 import { getFirebasePath, getMutationName, getTxName } from 'app/shared/util/firebase/firebase-utils';
 import { componentInject } from 'app/shared/util/typed-inject';
 import { getCancerTypesNameWithExclusion, parseTextForReferences } from 'app/shared/util/utils';
 import { IRootStore } from 'app/stores';
+import { DataSnapshot, onValue, ref } from 'firebase/database';
 import _ from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Row, Input } from 'reactstrap';
@@ -26,8 +28,10 @@ type ReferenceData = {
   };
 };
 
-function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList }: ICurationAbstractsTabProps) {
-  const firebaseGenePath = getFirebasePath('GENE', hugoSymbol);
+function CurationReferencesTab({ hugoSymbol, firebaseDb, drugList }: ICurationAbstractsTabProps) {
+  const [inputValue, setInputValue] = useState('');
+  const [displayedReferences, setDisplayedReferences] = useState<DisplayedReferenceData[]>([]);
+  const [geneData, setGeneData] = useState<Gene>(null);
 
   const allReferences = useMemo(() => {
     if (!geneData) {
@@ -37,9 +41,6 @@ function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList
     findReferences(references, geneData);
     return references;
   }, [geneData]);
-
-  const [inputValue, setInputValue] = useState('');
-  const [displayedReferences, setDisplayedReferences] = useState<DisplayedReferenceData[]>([]);
 
   function findReferences(references: ReferenceData, obj, path = '', depth = 0) {
     for (const key in obj) {
@@ -99,12 +100,19 @@ function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList
   }
 
   useEffect(() => {
-    const callback = addGeneListener(firebaseGenePath, false);
+    if (firebaseDb) {
+      const firebaseGenePath = getFirebasePath('GENE', hugoSymbol);
 
-    return () => {
-      callback && callback();
-    };
-  }, [firebaseGenePath]);
+      const callback = (snapshot: DataSnapshot) => {
+        setGeneData(snapshot.val());
+      };
+      const unsubscribe = onValue(ref(firebaseDb, firebaseGenePath), callback);
+
+      return () => {
+        unsubscribe && unsubscribe();
+      };
+    }
+  }, [firebaseDb]);
 
   useEffect(() => {
     const allReferenceKeys = Object.keys(allReferences);
@@ -149,9 +157,8 @@ function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList
   );
 }
 
-const mapStoreToProps = ({ firebaseGeneStore }: IRootStore) => ({
-  geneData: firebaseGeneStore.data,
-  addGeneListener: firebaseGeneStore.addListener,
+const mapStoreToProps = ({ firebaseStore }: IRootStore) => ({
+  firebaseDb: firebaseStore.firebaseDb,
 });
 
 type StoreProps = Partial<ReturnType<typeof mapStoreToProps>>;
