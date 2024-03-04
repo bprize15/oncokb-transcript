@@ -48,11 +48,11 @@ export class FirebaseCrudStore<T> {
     this.db = database;
   }
 
-  addListener(path: string) {
+  addListener(path: string, onlyOnce = true) {
     const callback = (snapshot: DataSnapshot) => {
       this.data = snapshot.val();
     };
-    const unsubscribe = onValue(ref(this.db, path), action(callback), { onlyOnce: true });
+    const unsubscribe = onValue(ref(this.db, path), action(callback), { onlyOnce });
     return unsubscribe;
   }
 

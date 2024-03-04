@@ -56,7 +56,6 @@ import AddMutationModal from 'app/shared/modal/AddMutationModal';
 import NoEntryBadge from 'app/shared/badge/NoEntryBadge';
 
 export interface IMutationCollapsibleProps extends StoreProps {
-  mutationList: Mutation[];
   mutation: Mutation;
   firebaseIndex: number;
   parsedHistoryList: Map<string, ParsedHistoryRecord[]>;
@@ -72,7 +71,6 @@ const MutationCollapsible = ({
   updateTumor,
   updateTreatment,
   updateMutation,
-  mutationList,
   mutation,
   firebaseIndex,
   parsedHistoryList,

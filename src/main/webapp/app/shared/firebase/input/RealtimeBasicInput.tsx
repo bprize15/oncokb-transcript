@@ -121,14 +121,6 @@ export class RealtimeBasicInput extends Component<IRealtimeBasicInput, any> {
     }
   };
 
-  function isChecked() {
-    const value = getValueByNestedKey(data, fieldKey);
-    if (value) {
-      return value === label;
-    }
-    return label === RADIO_OPTION_NONE;
-  }
-
   get inputComponent() {
     return (
       <Input

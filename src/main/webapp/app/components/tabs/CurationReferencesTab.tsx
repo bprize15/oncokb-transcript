@@ -99,7 +99,7 @@ function CurationReferencesTab({ hugoSymbol, geneData, addGeneListener, drugList
   }
 
   useEffect(() => {
-    const callback = addGeneListener(firebaseGenePath);
+    const callback = addGeneListener(firebaseGenePath, false);
 
     return () => {
       callback && callback();
