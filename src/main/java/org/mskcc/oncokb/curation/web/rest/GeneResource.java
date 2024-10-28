@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.mskcc.oncokb.curation.domain.Gene;
 import org.mskcc.oncokb.curation.repository.GeneRepository;
@@ -183,6 +184,11 @@ public class GeneResource {
         log.debug("REST request to get Gene : {}", id);
         Optional<Gene> gene = geneService.findOne(id);
         return ResponseUtil.wrapOrNotFound(gene);
+    }
+
+    @PostMapping("/genes/byHugoSymbol")
+    public ResponseEntity<List<Gene>> getGenesByHugoSymbol(@RequestBody Set<String> hugoSymbols) {
+        return ResponseEntity.ok().body(geneService.findByHugoSymbolIn(hugoSymbols));
     }
 
     /**
