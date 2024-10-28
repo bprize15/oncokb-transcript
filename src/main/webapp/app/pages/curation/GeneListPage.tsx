@@ -22,6 +22,8 @@ const getCurationPageLink = (hugoSymbol: string, isGermline: boolean) => {
 };
 import CurationDataImportTab from 'app/components/tabs/curation-data-import-tab/CurationDataImportTab';
 import { DATA_IMPORT_TAB_ID, GENE_LIST_TABLE_ID } from 'app/config/constants/html-id';
+import GeneStatusBadge from 'app/shared/badge/GeneStatusBadge';
+import { geneIsReleased } from 'app/shared/util/entity-utils/gene-entity-utils';
 
 type GeneMetaInfo = {
   hugoSymbol: string;
@@ -83,10 +85,22 @@ const GeneListPage = (props: IGeneListPage) => {
       Header: 'Last modified by',
     },
     {
-      accessor: 'needsReview',
       Header: 'Needs to be Reviewed',
-      Cell(cell: { value: string }): any {
-        return cell.value ? 'Yes' : 'No';
+      Cell(cell: { original: GeneMetaInfo }): any {
+        if (cell.original.needsReview) {
+          return <GeneStatusBadge status="Needs Review" hugoSymbol={cell.original.hugoSymbol} isGermline={isGermline} />;
+        }
+
+        const geneEntity = props.geneEntities?.find(entity => entity.hugoSymbol === cell.original.hugoSymbol);
+        // TODO: Need to popluate geneStore, too many genes to load all (40k+).
+        // Load all available genes in curation platform, maybe doable but won't scale (currently 1770)
+        // Load displayed genes, probably best solution but adds complexity and need a new endpoint to do that
+
+        if (geneEntity && !geneIsReleased(geneEntity)) {
+          return <GeneStatusBadge status="Pending Release" hugoSymbol={cell.original.hugoSymbol} isGermline={isGermline} />;
+        }
+
+        return <GeneStatusBadge status="Released" hugoSymbol={cell.original.hugoSymbol} isGermline={isGermline} />;
       },
     },
   ];
@@ -135,7 +149,7 @@ const GeneListPage = (props: IGeneListPage) => {
                     showPagination
                     defaultSorted={[
                       {
-                        id: 'needsReview',
+                        id: 'status',
                         desc: true,
                       },
                       {
@@ -161,12 +175,13 @@ const GeneListPage = (props: IGeneListPage) => {
   );
 };
 
-const mapStoreToProps = ({ firebaseMetaStore, firebaseAppStore }: IRootStore) => ({
+const mapStoreToProps = ({ firebaseMetaStore, firebaseAppStore, geneStore }: IRootStore) => ({
   firebaseReady: firebaseAppStore.firebaseReady,
   firebaseInitError: firebaseAppStore.firebaseInitError,
   firebaseLoginError: firebaseAppStore.firebaseLoginError,
   addMetaListener: firebaseMetaStore.addListener,
   metaData: firebaseMetaStore.data,
+  geneEntities: geneStore.entities,
 });
 
 type StoreProps = ReturnType<typeof mapStoreToProps>;
