@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service;
 
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.Synonym;
+import org.mskcc.oncokb.curation.domain.Synonym.Synonym;
 import org.mskcc.oncokb.curation.domain.enumeration.SynonymType;
 import org.mskcc.oncokb.curation.repository.SynonymRepository;
 import org.slf4j.Logger;

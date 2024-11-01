@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.mskcc.oncokb.curation.domain.Drug;
+import org.mskcc.oncokb.curation.domain.Drug.Drug;
 
 public class TreatmentDTO {
 

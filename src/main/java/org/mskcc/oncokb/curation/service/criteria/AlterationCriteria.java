@@ -13,7 +13,7 @@ import tech.jhipster.service.filter.LongFilter;
 import tech.jhipster.service.filter.StringFilter;
 
 /**
- * Criteria class for the {@link org.mskcc.oncokb.curation.domain.Alteration} entity. This class is used
+ * Criteria class for the {@link org.mskcc.oncokb.curation.domain.Alteration.Alteration} entity. This class is used
  * in {@link org.mskcc.oncokb.curation.web.rest.AlterationResource} to receive all the possible filtering options from
  * the Http GET request parameters.
  * For example the following could be a valid request:

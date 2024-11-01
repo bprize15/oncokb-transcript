@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.Gene;
+import org.mskcc.oncokb.curation.domain.Gene.Gene;
 import org.mskcc.oncokb.curation.repository.GeneRepository;
 import org.mskcc.oncokb.curation.service.GeneQueryService;
 import org.mskcc.oncokb.curation.service.GeneService;
@@ -28,7 +28,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Gene}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Gene.Gene}.
  */
 @RestController
 @RequestMapping("/api")

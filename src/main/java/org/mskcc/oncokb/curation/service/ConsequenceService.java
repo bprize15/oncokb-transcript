@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Consequence;
+import org.mskcc.oncokb.curation.domain.Consequence.Consequence;
 import org.mskcc.oncokb.curation.repository.ConsequenceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import org.mskcc.oncokb.curation.domain.Article;
-import org.mskcc.oncokb.curation.domain.Flag;
-import org.mskcc.oncokb.curation.domain.Synonym;
+import org.mskcc.oncokb.curation.domain.Article.Article;
+import org.mskcc.oncokb.curation.domain.Flag.Flag;
+import org.mskcc.oncokb.curation.domain.Synonym.Synonym;
 import org.mskcc.oncokb.curation.domain.enumeration.ArticleType;
 import org.mskcc.oncokb.curation.util.GsonUtils;
 

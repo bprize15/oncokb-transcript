@@ -7,8 +7,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Article;
-import org.mskcc.oncokb.curation.domain.Flag;
+import org.mskcc.oncokb.curation.domain.Article.Article;
+import org.mskcc.oncokb.curation.domain.Flag.Flag;
 import org.mskcc.oncokb.curation.repository.FlagRepository;
 import org.mskcc.oncokb.curation.service.FlagQueryService;
 import org.mskcc.oncokb.curation.service.FlagService;
@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Flag}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Flag.Flag}.
  */
 @RestController
 @RequestMapping("/api")

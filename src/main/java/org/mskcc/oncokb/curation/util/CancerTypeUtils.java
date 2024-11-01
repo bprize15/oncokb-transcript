@@ -7,7 +7,7 @@ import com.google.common.collect.ImmutableList;
 import java.util.*;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.CancerType;
+import org.mskcc.oncokb.curation.domain.CancerType.CancerType;
 import org.mskcc.oncokb.curation.domain.enumeration.TumorForm;
 import org.mskcc.oncokb.curation.util.enumeration.RelevantCancerTypeDirection;
 import org.mskcc.oncokb.curation.util.enumeration.SpecialCancerType;

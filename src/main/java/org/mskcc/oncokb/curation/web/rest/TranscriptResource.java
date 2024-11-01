@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Transcript}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Transcript.Transcript}.
  */
 @RestController
 @RequestMapping("/api")

@@ -5,8 +5,8 @@ import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.mskcc.oncokb.curation.config.Constants;
-import org.mskcc.oncokb.curation.domain.Authority;
-import org.mskcc.oncokb.curation.domain.User;
+import org.mskcc.oncokb.curation.domain.Authority.Authority;
+import org.mskcc.oncokb.curation.domain.User.User;
 
 /**
  * A DTO representing a user, with their authorities.

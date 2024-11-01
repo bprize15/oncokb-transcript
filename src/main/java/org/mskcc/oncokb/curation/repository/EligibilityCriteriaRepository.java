@@ -3,7 +3,7 @@ package org.mskcc.oncokb.curation.repository;
 import java.util.List;
 import java.util.Optional;
 import org.javers.spring.annotation.JaversSpringDataAuditable;
-import org.mskcc.oncokb.curation.domain.EligibilityCriteria;
+import org.mskcc.oncokb.curation.domain.EligibilityCriteria.EligibilityCriteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;

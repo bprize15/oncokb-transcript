@@ -1,7 +1,7 @@
 package org.mskcc.oncokb.curation.repository;
 
 import org.javers.spring.annotation.JaversSpringDataAuditable;
-import org.mskcc.oncokb.curation.domain.LevelOfEvidence;
+import org.mskcc.oncokb.curation.domain.LevelOfEvidence.LevelOfEvidence;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

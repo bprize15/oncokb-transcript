@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.FdaSubmissionType;
+import org.mskcc.oncokb.curation.domain.FdaSubmissionType.FdaSubmissionType;
 import org.mskcc.oncokb.curation.domain.enumeration.FdaSubmissionTypeKey;
 import org.mskcc.oncokb.curation.repository.FdaSubmissionTypeRepository;
 import org.slf4j.Logger;

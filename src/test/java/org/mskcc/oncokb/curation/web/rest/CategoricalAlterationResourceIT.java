@@ -16,7 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mskcc.oncokb.curation.IntegrationTest;
-import org.mskcc.oncokb.curation.domain.CategoricalAlteration;
+import org.mskcc.oncokb.curation.domain.CategoricalAlteration.CategoricalAlteration;
 import org.mskcc.oncokb.curation.domain.enumeration.AlterationType;
 import org.mskcc.oncokb.curation.repository.CategoricalAlterationRepository;
 import org.springframework.beans.factory.annotation.Autowired;

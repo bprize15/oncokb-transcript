@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.Drug;
+import org.mskcc.oncokb.curation.domain.Drug.Drug;
 import org.mskcc.oncokb.curation.repository.DrugRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

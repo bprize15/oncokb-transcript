@@ -1,7 +1,7 @@
 package org.mskcc.oncokb.curation.service;
 
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.ClinicalTrial;
+import org.mskcc.oncokb.curation.domain.ClinicalTrial.ClinicalTrial;
 import org.mskcc.oncokb.curation.repository.ClinicalTrialRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

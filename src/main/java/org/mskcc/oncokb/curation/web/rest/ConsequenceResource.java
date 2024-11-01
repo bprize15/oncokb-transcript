@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Consequence;
+import org.mskcc.oncokb.curation.domain.Consequence.Consequence;
 import org.mskcc.oncokb.curation.repository.ConsequenceRepository;
 import org.mskcc.oncokb.curation.service.ConsequenceQueryService;
 import org.mskcc.oncokb.curation.service.ConsequenceService;
@@ -22,7 +22,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Consequence}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Consequence.Consequence}.
  */
 @RestController
 @RequestMapping("/api")

@@ -1,7 +1,6 @@
 package org.mskcc.oncokb.curation.service;
 
 import java.net.URI;
-import java.net.URL;
 import org.mskcc.oncokb.curation.security.SecurityUtils;
 import org.mskcc.oncokb.curation.service.dto.ClustalOResp;
 import org.slf4j.Logger;

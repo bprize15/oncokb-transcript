@@ -1,8 +1,8 @@
 package org.mskcc.oncokb.curation.repository;
 
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Sequence;
-import org.mskcc.oncokb.curation.domain.Transcript;
+import org.mskcc.oncokb.curation.domain.Sequence.Sequence;
+import org.mskcc.oncokb.curation.domain.Transcript.Transcript;
 import org.mskcc.oncokb.curation.domain.enumeration.SequenceType;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;

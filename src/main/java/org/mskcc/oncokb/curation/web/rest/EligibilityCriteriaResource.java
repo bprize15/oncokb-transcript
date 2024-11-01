@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.EligibilityCriteria;
+import org.mskcc.oncokb.curation.domain.EligibilityCriteria.EligibilityCriteria;
 import org.mskcc.oncokb.curation.repository.EligibilityCriteriaRepository;
 import org.mskcc.oncokb.curation.service.EligibilityCriteriaQueryService;
 import org.mskcc.oncokb.curation.service.EligibilityCriteriaService;
@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.EligibilityCriteria}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.EligibilityCriteria.EligibilityCriteria}.
  */
 @RestController
 @RequestMapping("/api")

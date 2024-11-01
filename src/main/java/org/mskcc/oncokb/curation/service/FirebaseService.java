@@ -3,10 +3,10 @@ package org.mskcc.oncokb.curation.service;
 import com.google.firebase.database.*;
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.Alteration;
-import org.mskcc.oncokb.curation.domain.Association;
-import org.mskcc.oncokb.curation.domain.Evidence;
-import org.mskcc.oncokb.curation.domain.NciThesaurus;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
+import org.mskcc.oncokb.curation.domain.Association.Association;
+import org.mskcc.oncokb.curation.domain.Evidence.Evidence;
+import org.mskcc.oncokb.curation.domain.NciThesaurus.NciThesaurus;
 import org.mskcc.oncokb.curation.domain.enumeration.EvidenceType;
 import org.mskcc.oncokb.curation.domain.firebase.Drug;
 import org.mskcc.oncokb.curation.domain.firebase.Gene;
@@ -67,7 +67,7 @@ public class FirebaseService {
     }
 
     private void importGeneData(Gene gene) {
-        Optional<org.mskcc.oncokb.curation.domain.Gene> geneOptional = geneService.findGeneByHugoSymbol(gene.getName());
+        Optional<org.mskcc.oncokb.curation.domain.Gene.Gene> geneOptional = geneService.findGeneByHugoSymbol(gene.getName());
         if (geneOptional.isEmpty()) {
             log.error("Cannot find matched gene {}", gene.getName());
         }
@@ -112,7 +112,7 @@ public class FirebaseService {
                     log.info("Loaded Drugs");
                     for (Map.Entry<String, Drug> drugEntry : drugMap.entrySet()) {
                         Drug drug = drugEntry.getValue();
-                        Optional<org.mskcc.oncokb.curation.domain.Drug> drugOptional = Optional.empty();
+                        Optional<org.mskcc.oncokb.curation.domain.Drug.Drug> drugOptional = Optional.empty();
                         if (StringUtils.isEmpty(drug.getNcitCode())) {
                             drugOptional = drugService.findByName(drug.getDrugName());
                         } else {
@@ -128,7 +128,7 @@ public class FirebaseService {
                             if (nciThesaurusOptional.isEmpty()) {
                                 log.error("Cannot find the NCIT code from drug {} {}", drug.getNcitCode(), drug.getDrugName());
                             } else {
-                                org.mskcc.oncokb.curation.domain.Drug newDrugEntity = new org.mskcc.oncokb.curation.domain.Drug();
+                                org.mskcc.oncokb.curation.domain.Drug.Drug newDrugEntity = new org.mskcc.oncokb.curation.domain.Drug.Drug();
                                 newDrugEntity.setNciThesaurus(nciThesaurusOptional.orElseThrow());
                                 newDrugEntity.setName(drug.getDrugName());
                                 newDrugEntity.setUuid(drug.getUuid());

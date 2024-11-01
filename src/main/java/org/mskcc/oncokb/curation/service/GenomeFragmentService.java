@@ -3,7 +3,7 @@ package org.mskcc.oncokb.curation.service;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.GenomeFragment;
+import org.mskcc.oncokb.curation.domain.GenomeFragment.GenomeFragment;
 import org.mskcc.oncokb.curation.repository.GenomeFragmentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

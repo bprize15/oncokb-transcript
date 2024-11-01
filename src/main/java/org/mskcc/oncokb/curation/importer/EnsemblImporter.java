@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.SeqRegion;
+import org.mskcc.oncokb.curation.domain.SeqRegion.SeqRegion;
 import org.mskcc.oncokb.curation.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.GenomicIndicator;
+import org.mskcc.oncokb.curation.domain.GenomicIndicator.GenomicIndicator;
 import org.mskcc.oncokb.curation.domain.enumeration.GenomicIndicatorType;
 import org.mskcc.oncokb.curation.repository.GenomicIndicatorRepository;
 import org.slf4j.Logger;

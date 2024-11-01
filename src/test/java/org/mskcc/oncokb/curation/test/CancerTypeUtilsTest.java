@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.junit.Test;
-import org.mskcc.oncokb.curation.domain.CancerType;
+import org.mskcc.oncokb.curation.domain.CancerType.CancerType;
 import org.mskcc.oncokb.curation.util.CancerTypeUtils;
 
 public class CancerTypeUtilsTest {

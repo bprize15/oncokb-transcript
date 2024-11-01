@@ -4,8 +4,8 @@ import static org.mskcc.oncokb.curation.util.AlterationUtils.removeExclusionCrit
 
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Alteration;
-import org.mskcc.oncokb.curation.domain.CategoricalAlteration;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
+import org.mskcc.oncokb.curation.domain.CategoricalAlteration.CategoricalAlteration;
 import org.mskcc.oncokb.curation.domain.enumeration.AlterationType;
 import org.mskcc.oncokb.curation.repository.CategoricalAlterationRepository;
 import org.slf4j.Logger;

@@ -3,7 +3,7 @@ package org.mskcc.oncokb.curation.service;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.SeqRegion;
+import org.mskcc.oncokb.curation.domain.SeqRegion.SeqRegion;
 import org.mskcc.oncokb.curation.repository.SeqRegionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

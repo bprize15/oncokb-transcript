@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.web.rest;
 
 import java.util.Optional;
 import org.genome_nexus.ApiException;
-import org.mskcc.oncokb.curation.domain.EnsemblGene;
+import org.mskcc.oncokb.curation.domain.EnsemblGene.EnsemblGene;
 import org.mskcc.oncokb.curation.domain.enumeration.ReferenceGenome;
 import org.mskcc.oncokb.curation.service.*;
 import org.mskcc.oncokb.curation.web.rest.model.AddEnsemblGeneBody;

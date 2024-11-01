@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.Alteration;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
 import org.mskcc.oncokb.curation.repository.AlterationRepository;
 import org.mskcc.oncokb.curation.service.AlterationQueryService;
 import org.mskcc.oncokb.curation.service.AlterationService;
@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Alteration}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Alteration.Alteration}.
  */
 @RestController
 @RequestMapping("/api")

@@ -7,8 +7,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.CancerType;
-import org.mskcc.oncokb.curation.domain.RelevantCancerTypeBody;
+import org.mskcc.oncokb.curation.domain.CancerType.CancerType;
+import org.mskcc.oncokb.curation.domain.RelevantCancerTypeBody.RelevantCancerTypeBody;
 import org.mskcc.oncokb.curation.repository.CancerTypeRepository;
 import org.mskcc.oncokb.curation.service.CancerTypeQueryService;
 import org.mskcc.oncokb.curation.service.CancerTypeService;
@@ -28,7 +28,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.CancerType}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.CancerType.CancerType}.
  */
 @RestController
 @RequestMapping("/api")

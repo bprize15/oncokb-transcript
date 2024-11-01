@@ -2,8 +2,10 @@ package org.mskcc.oncokb.curation.service;
 
 import jakarta.persistence.criteria.JoinType;
 import java.util.List;
-import org.mskcc.oncokb.curation.domain.*; // for static metamodels
-import org.mskcc.oncokb.curation.domain.GenomicIndicator;
+import org.mskcc.oncokb.curation.domain.AlleleState.AlleleState_;
+import org.mskcc.oncokb.curation.domain.Association.Association_;
+import org.mskcc.oncokb.curation.domain.GenomicIndicator.GenomicIndicator;
+import org.mskcc.oncokb.curation.domain.GenomicIndicator.GenomicIndicator_;
 import org.mskcc.oncokb.curation.repository.GenomicIndicatorRepository;
 import org.mskcc.oncokb.curation.service.criteria.GenomicIndicatorCriteria;
 import org.slf4j.Logger;

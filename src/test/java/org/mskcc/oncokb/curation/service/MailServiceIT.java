@@ -26,7 +26,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mskcc.oncokb.curation.IntegrationTest;
 import org.mskcc.oncokb.curation.config.Constants;
-import org.mskcc.oncokb.curation.domain.User;
+import org.mskcc.oncokb.curation.domain.User.User;
 import org.mskcc.oncokb.curation.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

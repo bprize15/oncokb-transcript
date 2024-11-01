@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.web.rest;
 
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.Gene;
+import org.mskcc.oncokb.curation.domain.Gene.Gene;
 import org.mskcc.oncokb.curation.repository.GeneRepository;
 import org.mskcc.oncokb.curation.service.GeneService;
 import org.slf4j.Logger;

@@ -3,7 +3,7 @@ package org.mskcc.oncokb.curation.service;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice;
+import org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice.CompanionDiagnosticDevice;
 import org.mskcc.oncokb.curation.repository.CompanionDiagnosticDeviceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

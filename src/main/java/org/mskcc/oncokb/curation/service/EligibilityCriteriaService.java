@@ -1,7 +1,7 @@
 package org.mskcc.oncokb.curation.service;
 
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.EligibilityCriteria;
+import org.mskcc.oncokb.curation.domain.EligibilityCriteria.EligibilityCriteria;
 import org.mskcc.oncokb.curation.repository.EligibilityCriteriaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

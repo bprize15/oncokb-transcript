@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.NciThesaurus;
+import org.mskcc.oncokb.curation.domain.NciThesaurus.NciThesaurus;
 import org.mskcc.oncokb.curation.repository.NciThesaurusRepository;
 import org.mskcc.oncokb.curation.service.NciThesaurusQueryService;
 import org.mskcc.oncokb.curation.service.NciThesaurusService;
@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.NciThesaurus}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.NciThesaurus.NciThesaurus}.
  */
 @RestController
 @RequestMapping("/api")

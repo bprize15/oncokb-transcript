@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.ClinicalTrial;
+import org.mskcc.oncokb.curation.domain.ClinicalTrial.ClinicalTrial;
 import org.mskcc.oncokb.curation.repository.ClinicalTrialRepository;
 import org.mskcc.oncokb.curation.service.ClinicalTrialQueryService;
 import org.mskcc.oncokb.curation.service.ClinicalTrialService;
@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.ClinicalTrial}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.ClinicalTrial.ClinicalTrial}.
  */
 @RestController
 @RequestMapping("/api")

@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.mskcc.oncokb.curation.util.AlterationUtils.parseProteinChange;
 
 import org.junit.jupiter.api.Test;
-import org.mskcc.oncokb.curation.domain.Alteration;
-import org.mskcc.oncokb.curation.domain.AlterationAnnotationStatus;
-import org.mskcc.oncokb.curation.domain.EntityStatus;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
+import org.mskcc.oncokb.curation.domain.AlterationAnnotationStatus.AlterationAnnotationStatus;
+import org.mskcc.oncokb.curation.domain.EntityStatus.EntityStatus;
 
 public class AlterationUtilsTest {
 

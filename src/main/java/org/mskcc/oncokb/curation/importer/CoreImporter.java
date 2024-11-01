@@ -12,7 +12,11 @@ import java.util.UUID;
 import jodd.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.mskcc.oncokb.curation.config.application.ApplicationProperties;
-import org.mskcc.oncokb.curation.domain.*;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
+import org.mskcc.oncokb.curation.domain.Article.Article;
+import org.mskcc.oncokb.curation.domain.Drug.Drug;
+import org.mskcc.oncokb.curation.domain.Gene.Gene;
+import org.mskcc.oncokb.curation.domain.NciThesaurus.NciThesaurus;
 import org.mskcc.oncokb.curation.domain.enumeration.ArticleType;
 import org.mskcc.oncokb.curation.domain.enumeration.ReferenceGenome;
 import org.mskcc.oncokb.curation.service.*;
@@ -156,7 +160,7 @@ public class CoreImporter {
             drug.setName(name);
             Optional<NciThesaurus> nciThesaurusOptional = Optional.empty();
 
-            Optional<org.mskcc.oncokb.curation.domain.Drug> drugOptional = Optional.empty();
+            Optional<org.mskcc.oncokb.curation.domain.Drug.Drug> drugOptional = Optional.empty();
             if (StringUtils.isEmpty(code)) {
                 drugOptional = drugService.findByName(name);
             } else {

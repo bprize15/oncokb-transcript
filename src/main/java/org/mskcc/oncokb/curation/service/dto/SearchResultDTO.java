@@ -1,12 +1,12 @@
 package org.mskcc.oncokb.curation.service.dto;
 
 import java.util.List;
-import org.mskcc.oncokb.curation.domain.Alteration;
-import org.mskcc.oncokb.curation.domain.Article;
-import org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice;
-import org.mskcc.oncokb.curation.domain.Drug;
-import org.mskcc.oncokb.curation.domain.FdaSubmission;
-import org.mskcc.oncokb.curation.domain.Gene;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
+import org.mskcc.oncokb.curation.domain.Article.Article;
+import org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice.CompanionDiagnosticDevice;
+import org.mskcc.oncokb.curation.domain.Drug.Drug;
+import org.mskcc.oncokb.curation.domain.FdaSubmission.FdaSubmission;
+import org.mskcc.oncokb.curation.domain.Gene.Gene;
 
 public class SearchResultDTO {
 

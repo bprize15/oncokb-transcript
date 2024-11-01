@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Flag;
+import org.mskcc.oncokb.curation.domain.Flag.Flag;
 import org.mskcc.oncokb.curation.domain.enumeration.FlagType;
 import org.mskcc.oncokb.curation.repository.FlagRepository;
 import org.slf4j.Logger;

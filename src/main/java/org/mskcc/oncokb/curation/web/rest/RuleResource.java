@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Rule;
+import org.mskcc.oncokb.curation.domain.Rule.Rule;
 import org.mskcc.oncokb.curation.repository.RuleRepository;
 import org.mskcc.oncokb.curation.service.RuleService;
 import org.mskcc.oncokb.curation.web.rest.errors.BadRequestAlertException;
@@ -20,7 +20,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Rule}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Rule.Rule}.
  */
 @RestController
 @RequestMapping("/api")

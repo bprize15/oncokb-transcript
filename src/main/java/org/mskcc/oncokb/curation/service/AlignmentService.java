@@ -3,8 +3,8 @@ package org.mskcc.oncokb.curation.service;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import org.mskcc.oncokb.curation.domain.Alignment;
-import org.mskcc.oncokb.curation.domain.AlignmentResult;
+import org.mskcc.oncokb.curation.domain.Alignment.Alignment;
+import org.mskcc.oncokb.curation.domain.Alignment.AlignmentResult;
 import org.springframework.stereotype.Service;
 
 /**

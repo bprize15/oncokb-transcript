@@ -1,7 +1,7 @@
 package org.mskcc.oncokb.curation.service;
 
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Evidence;
+import org.mskcc.oncokb.curation.domain.Evidence.Evidence;
 import org.mskcc.oncokb.curation.repository.EvidenceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

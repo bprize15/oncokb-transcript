@@ -7,8 +7,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.EnsemblGene;
-import org.mskcc.oncokb.curation.domain.FdaSubmission;
+import org.mskcc.oncokb.curation.domain.EnsemblGene.EnsemblGene;
+import org.mskcc.oncokb.curation.domain.FdaSubmission.FdaSubmission;
 import org.mskcc.oncokb.curation.repository.EnsemblGeneRepository;
 import org.mskcc.oncokb.curation.service.EnsemblGeneQueryService;
 import org.mskcc.oncokb.curation.service.EnsemblGeneService;
@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.EnsemblGene}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.EnsemblGene.EnsemblGene}.
  */
 @RestController
 @RequestMapping("/api")

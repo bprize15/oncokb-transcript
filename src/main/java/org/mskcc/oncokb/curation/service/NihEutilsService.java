@@ -15,7 +15,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.sax.SAXSource;
 import org.apache.commons.lang3.StringUtils;
 import org.mskcc.oncokb.curation.config.application.ApplicationProperties;
-import org.mskcc.oncokb.curation.domain.Synonym;
+import org.mskcc.oncokb.curation.domain.Synonym.Synonym;
 import org.mskcc.oncokb.curation.domain.enumeration.SynonymType;
 import org.mskcc.oncokb.curation.domain.nih.efetch.*;
 import org.mskcc.oncokb.curation.service.dto.pubmed.*;

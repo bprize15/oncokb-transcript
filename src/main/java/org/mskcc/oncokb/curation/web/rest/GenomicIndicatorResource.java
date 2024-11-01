@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.GenomicIndicator;
+import org.mskcc.oncokb.curation.domain.GenomicIndicator.GenomicIndicator;
 import org.mskcc.oncokb.curation.repository.GenomicIndicatorRepository;
 import org.mskcc.oncokb.curation.service.GenomicIndicatorQueryService;
 import org.mskcc.oncokb.curation.service.GenomicIndicatorService;
@@ -30,7 +30,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.GenomicIndicator}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.GenomicIndicator.GenomicIndicator}.
  */
 @RestController
 @RequestMapping("/api")

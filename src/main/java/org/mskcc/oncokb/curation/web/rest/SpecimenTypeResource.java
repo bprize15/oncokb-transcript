@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.SpecimenType;
+import org.mskcc.oncokb.curation.domain.SpecimenType.SpecimenType;
 import org.mskcc.oncokb.curation.repository.SpecimenTypeRepository;
 import org.mskcc.oncokb.curation.service.SpecimenTypeService;
 import org.mskcc.oncokb.curation.web.rest.errors.BadRequestAlertException;
@@ -20,7 +20,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.SpecimenType}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.SpecimenType.SpecimenType}.
  */
 @RestController
 @RequestMapping("/api")

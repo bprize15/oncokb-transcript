@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.repository;
 
 import java.util.Optional;
 import org.javers.spring.annotation.JaversSpringDataAuditable;
-import org.mskcc.oncokb.curation.domain.AlleleState;
+import org.mskcc.oncokb.curation.domain.AlleleState.AlleleState;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

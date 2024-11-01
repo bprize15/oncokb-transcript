@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.repository;
 
 import java.util.Optional;
 import org.javers.spring.annotation.JaversSpringDataAuditable;
-import org.mskcc.oncokb.curation.domain.CategoricalAlteration;
+import org.mskcc.oncokb.curation.domain.CategoricalAlteration.CategoricalAlteration;
 import org.mskcc.oncokb.curation.domain.enumeration.AlterationType;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;

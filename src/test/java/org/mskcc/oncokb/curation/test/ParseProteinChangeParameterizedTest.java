@@ -7,9 +7,9 @@ import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.mskcc.oncokb.curation.domain.Alteration;
-import org.mskcc.oncokb.curation.domain.AlterationAnnotationStatus;
-import org.mskcc.oncokb.curation.domain.EntityStatus;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
+import org.mskcc.oncokb.curation.domain.AlterationAnnotationStatus.AlterationAnnotationStatus;
+import org.mskcc.oncokb.curation.domain.EntityStatus.EntityStatus;
 
 public class ParseProteinChangeParameterizedTest {
 

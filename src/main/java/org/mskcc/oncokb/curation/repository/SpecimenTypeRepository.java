@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.repository;
 
 import java.util.Optional;
 import org.javers.spring.annotation.JaversSpringDataAuditable;
-import org.mskcc.oncokb.curation.domain.SpecimenType;
+import org.mskcc.oncokb.curation.domain.SpecimenType.SpecimenType;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Synonym;
+import org.mskcc.oncokb.curation.domain.Synonym.Synonym;
 import org.mskcc.oncokb.curation.repository.SynonymRepository;
 import org.mskcc.oncokb.curation.service.SynonymQueryService;
 import org.mskcc.oncokb.curation.service.SynonymService;
@@ -29,7 +29,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Synonym}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Synonym.Synonym}.
  */
 @RestController
 @RequestMapping("/api")

@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.Drug;
+import org.mskcc.oncokb.curation.domain.Drug.Drug;
 import org.mskcc.oncokb.curation.domain.enumeration.InfoType;
 import org.mskcc.oncokb.curation.repository.DrugRepository;
 import org.mskcc.oncokb.curation.repository.SynonymRepository;

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Info;
+import org.mskcc.oncokb.curation.domain.Info.Info;
 import org.mskcc.oncokb.curation.domain.enumeration.InfoType;
 import org.mskcc.oncokb.curation.repository.InfoRepository;
 import org.slf4j.Logger;

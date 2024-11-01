@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.SeqRegion;
+import org.mskcc.oncokb.curation.domain.SeqRegion.SeqRegion;
 import org.mskcc.oncokb.curation.repository.SeqRegionRepository;
 import org.mskcc.oncokb.curation.service.SeqRegionService;
 import org.mskcc.oncokb.curation.web.rest.errors.BadRequestAlertException;
@@ -27,7 +27,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.SeqRegion}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.SeqRegion.SeqRegion}.
  */
 @RestController
 @RequestMapping("/api")

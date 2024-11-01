@@ -12,7 +12,7 @@ import tech.jhipster.service.filter.LongFilter;
 import tech.jhipster.service.filter.StringFilter;
 
 /**
- * Criteria class for the {@link org.mskcc.oncokb.curation.domain.GenomicIndicator} entity. This class is used
+ * Criteria class for the {@link org.mskcc.oncokb.curation.domain.GenomicIndicator.GenomicIndicator} entity. This class is used
  * in {@link org.mskcc.oncokb.curation.web.rest.GenomicIndicatorResource} to receive all the possible filtering options from
  * the Http GET request parameters.
  * For example the following could be a valid request:

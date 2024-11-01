@@ -2,8 +2,10 @@ package org.mskcc.oncokb.curation.service;
 
 import jakarta.persistence.criteria.JoinType;
 import java.util.List;
-import org.mskcc.oncokb.curation.domain.*; // for static metamodels
-import org.mskcc.oncokb.curation.domain.EligibilityCriteria;
+import org.mskcc.oncokb.curation.domain.Association.Association_;
+import org.mskcc.oncokb.curation.domain.ClinicalTrial.ClinicalTrial_;
+import org.mskcc.oncokb.curation.domain.EligibilityCriteria.EligibilityCriteria;
+import org.mskcc.oncokb.curation.domain.EligibilityCriteria.EligibilityCriteria_;
 import org.mskcc.oncokb.curation.repository.EligibilityCriteriaRepository;
 import org.mskcc.oncokb.curation.service.criteria.EligibilityCriteriaCriteria;
 import org.slf4j.Logger;

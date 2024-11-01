@@ -3,7 +3,7 @@ package org.mskcc.oncokb.curation.domain.dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.mskcc.oncokb.curation.domain.Alteration;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
 
 public class HotspotDTO implements Serializable {
 

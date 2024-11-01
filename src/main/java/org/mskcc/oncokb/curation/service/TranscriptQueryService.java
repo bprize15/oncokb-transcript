@@ -2,11 +2,15 @@ package org.mskcc.oncokb.curation.service;
 
 import jakarta.persistence.criteria.JoinType;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.*; // for static metamodels
-import org.mskcc.oncokb.curation.domain.Transcript;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration_;
+import org.mskcc.oncokb.curation.domain.EnsemblGene.EnsemblGene_;
+import org.mskcc.oncokb.curation.domain.Flag.Flag_;
+import org.mskcc.oncokb.curation.domain.Gene.Gene_;
+import org.mskcc.oncokb.curation.domain.GenomeFragment.GenomeFragment_;
+import org.mskcc.oncokb.curation.domain.Sequence.Sequence_;
+import org.mskcc.oncokb.curation.domain.Transcript.Transcript;
+import org.mskcc.oncokb.curation.domain.Transcript.Transcript_;
 import org.mskcc.oncokb.curation.repository.TranscriptRepository;
-import org.mskcc.oncokb.curation.service.criteria.EnsemblGeneCriteria;
 import org.mskcc.oncokb.curation.service.criteria.TranscriptCriteria;
 import org.mskcc.oncokb.curation.service.dto.TranscriptDTO;
 import org.mskcc.oncokb.curation.service.mapper.TranscriptMapper;
@@ -18,7 +22,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tech.jhipster.service.QueryService;
-import tech.jhipster.service.filter.IntegerFilter;
 import tech.jhipster.service.filter.StringFilter;
 
 /**

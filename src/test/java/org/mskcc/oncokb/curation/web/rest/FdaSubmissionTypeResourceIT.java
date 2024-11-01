@@ -16,7 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mskcc.oncokb.curation.IntegrationTest;
-import org.mskcc.oncokb.curation.domain.FdaSubmissionType;
+import org.mskcc.oncokb.curation.domain.FdaSubmissionType.FdaSubmissionType;
 import org.mskcc.oncokb.curation.domain.enumeration.FdaSubmissionTypeKey;
 import org.mskcc.oncokb.curation.repository.FdaSubmissionTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package org.mskcc.oncokb.curation.service;
 
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Sequence;
-import org.mskcc.oncokb.curation.domain.Transcript;
+import org.mskcc.oncokb.curation.domain.Sequence.Sequence;
+import org.mskcc.oncokb.curation.domain.Transcript.Transcript;
 import org.mskcc.oncokb.curation.domain.enumeration.SequenceType;
 import org.mskcc.oncokb.curation.repository.SequenceRepository;
 import org.mskcc.oncokb.curation.service.mapper.TranscriptMapper;

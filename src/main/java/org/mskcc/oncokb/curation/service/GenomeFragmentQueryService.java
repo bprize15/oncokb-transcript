@@ -2,8 +2,10 @@ package org.mskcc.oncokb.curation.service;
 
 import jakarta.persistence.criteria.JoinType;
 import java.util.List;
-import org.mskcc.oncokb.curation.domain.*; // for static metamodels
-import org.mskcc.oncokb.curation.domain.GenomeFragment;
+import org.mskcc.oncokb.curation.domain.GenomeFragment.GenomeFragment;
+import org.mskcc.oncokb.curation.domain.GenomeFragment.GenomeFragment_;
+import org.mskcc.oncokb.curation.domain.SeqRegion.SeqRegion_;
+import org.mskcc.oncokb.curation.domain.Transcript.Transcript_;
 import org.mskcc.oncokb.curation.repository.GenomeFragmentRepository;
 import org.mskcc.oncokb.curation.service.criteria.GenomeFragmentCriteria;
 import org.slf4j.Logger;

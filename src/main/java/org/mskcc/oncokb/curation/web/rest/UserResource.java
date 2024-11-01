@@ -6,7 +6,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
 import org.mskcc.oncokb.curation.config.Constants;
-import org.mskcc.oncokb.curation.domain.User;
+import org.mskcc.oncokb.curation.domain.User.User;
 import org.mskcc.oncokb.curation.repository.UserRepository;
 import org.mskcc.oncokb.curation.security.AuthoritiesConstants;
 import org.mskcc.oncokb.curation.service.UserService;

@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.AlleleState;
+import org.mskcc.oncokb.curation.domain.AlleleState.AlleleState;
 import org.mskcc.oncokb.curation.repository.AlleleStateRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

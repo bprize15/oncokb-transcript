@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.repository;
 
 import java.util.List;
 import org.javers.spring.annotation.JaversSpringDataAuditable;
-import org.mskcc.oncokb.curation.domain.GenomeFragment;
+import org.mskcc.oncokb.curation.domain.GenomeFragment.GenomeFragment;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

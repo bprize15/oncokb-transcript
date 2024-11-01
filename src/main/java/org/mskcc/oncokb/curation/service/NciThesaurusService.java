@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.NciThesaurus;
+import org.mskcc.oncokb.curation.domain.NciThesaurus.NciThesaurus;
 import org.mskcc.oncokb.curation.repository.NciThesaurusRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

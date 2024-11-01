@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Article;
+import org.mskcc.oncokb.curation.domain.Article.Article;
 import org.mskcc.oncokb.curation.domain.nih.efetch.ArticleId;
 import org.mskcc.oncokb.curation.repository.ArticleRepository;
 import org.mskcc.oncokb.curation.service.ArticleQueryService;
@@ -33,7 +33,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Article}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Article.Article}.
  */
 @RestController
 @RequestMapping("/api")

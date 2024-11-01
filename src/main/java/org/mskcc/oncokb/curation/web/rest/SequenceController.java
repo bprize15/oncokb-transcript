@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.Sequence;
+import org.mskcc.oncokb.curation.domain.Sequence.Sequence;
 import org.mskcc.oncokb.curation.domain.enumeration.ReferenceGenome;
 import org.mskcc.oncokb.curation.domain.enumeration.SequenceType;
 import org.mskcc.oncokb.curation.service.MainService;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Sequence}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Sequence.Sequence}.
  */
 @RestController
 @RequestMapping("/api")

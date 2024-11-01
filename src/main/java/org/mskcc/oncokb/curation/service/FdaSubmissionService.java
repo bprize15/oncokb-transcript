@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
-import org.mskcc.oncokb.curation.domain.FdaSubmission;
+import org.mskcc.oncokb.curation.domain.FdaSubmission.FdaSubmission;
 import org.mskcc.oncokb.curation.repository.FdaSubmissionRepository;
 import org.mskcc.oncokb.curation.util.CdxUtils;
 import org.slf4j.Logger;

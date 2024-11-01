@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-import org.mskcc.oncokb.curation.domain.FdaDrug;
+import org.mskcc.oncokb.curation.domain.FdaDrug.FdaDrug;
 import org.mskcc.oncokb.curation.repository.FdaDrugRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

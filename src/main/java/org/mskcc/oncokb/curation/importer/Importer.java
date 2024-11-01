@@ -10,10 +10,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.mskcc.oncokb.curation.domain.Alteration;
-import org.mskcc.oncokb.curation.domain.Consequence;
-import org.mskcc.oncokb.curation.domain.EnsemblGene;
-import org.mskcc.oncokb.curation.domain.Sequence;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
+import org.mskcc.oncokb.curation.domain.Consequence.Consequence;
+import org.mskcc.oncokb.curation.domain.EnsemblGene.EnsemblGene;
+import org.mskcc.oncokb.curation.domain.Sequence.Sequence;
 import org.mskcc.oncokb.curation.domain.enumeration.AlterationType;
 import org.mskcc.oncokb.curation.domain.enumeration.ReferenceGenome;
 import org.mskcc.oncokb.curation.domain.enumeration.SequenceType;
@@ -114,7 +114,7 @@ public class Importer {
                 continue;
             }
             // check grch37
-            Optional<org.mskcc.oncokb.curation.domain.Gene> geneOptional = geneService.findGeneByEntrezGeneId(gene.getEntrezGeneId());
+            Optional<org.mskcc.oncokb.curation.domain.Gene.Gene> geneOptional = geneService.findGeneByEntrezGeneId(gene.getEntrezGeneId());
             if (geneOptional.isEmpty()) {
                 log.error("The OncoKB gene does not exist in transcript {}:{}", gene.getEntrezGeneId(), gene.getHugoSymbol());
             } else {

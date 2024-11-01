@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.FdaSubmission;
+import org.mskcc.oncokb.curation.domain.FdaSubmission.FdaSubmission;
 import org.mskcc.oncokb.curation.repository.FdaSubmissionRepository;
 import org.mskcc.oncokb.curation.service.FdaSubmissionQueryService;
 import org.mskcc.oncokb.curation.service.FdaSubmissionService;
@@ -27,7 +27,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.FdaSubmission}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.FdaSubmission.FdaSubmission}.
  */
 @RestController
 @RequestMapping("/api")

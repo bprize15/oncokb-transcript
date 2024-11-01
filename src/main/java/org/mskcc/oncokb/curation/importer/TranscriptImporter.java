@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.genome_nexus.ApiException;
 import org.genome_nexus.client.EnsemblTranscript;
-import org.mskcc.oncokb.curation.domain.Gene;
+import org.mskcc.oncokb.curation.domain.Gene.Gene;
 import org.mskcc.oncokb.curation.domain.enumeration.InfoType;
 import org.mskcc.oncokb.curation.domain.enumeration.ReferenceGenome;
 import org.mskcc.oncokb.curation.domain.enumeration.TranscriptFlagEnum;
@@ -128,14 +128,14 @@ public class TranscriptImporter {
         int pageSize = 10;
         final PageRequest pageable = PageRequest.of(0, pageSize);
         Page<Long> firstPageGeneIds = geneService.findAllGeneIds(pageable);
-        List<org.mskcc.oncokb.curation.domain.Gene> allGenes = new ArrayList<>();
+        List<org.mskcc.oncokb.curation.domain.Gene.Gene> allGenes = new ArrayList<>();
         for (int i = 0; i < firstPageGeneIds.getTotalPages(); i++) {
             PageRequest genePage = PageRequest.of(i, pageSize);
             Page<Long> pageGeneIds = geneService.findAllGeneIds(genePage);
             allGenes.addAll(geneService.findAllByIdInWithGeneAliasAndEnsemblGenes(pageGeneIds.getContent()));
         }
         for (ReferenceGenome rg : ReferenceGenome.values()) {
-            for (org.mskcc.oncokb.curation.domain.Gene gene : allGenes) {
+            for (org.mskcc.oncokb.curation.domain.Gene.Gene gene : allGenes) {
                 mainService.createCanonicalEnsemblGene(rg, gene.getEntrezGeneId());
             }
         }

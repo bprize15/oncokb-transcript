@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Association;
+import org.mskcc.oncokb.curation.domain.Association.Association;
 import org.mskcc.oncokb.curation.repository.AssociationRepository;
 import org.mskcc.oncokb.curation.service.AssociationService;
 import org.mskcc.oncokb.curation.web.rest.errors.BadRequestAlertException;
@@ -24,7 +24,7 @@ import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Association}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.Association.Association}.
  */
 @RestController
 @RequestMapping("/api")

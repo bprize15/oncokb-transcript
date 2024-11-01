@@ -1,7 +1,7 @@
 package org.mskcc.oncokb.curation.service;
 
 import java.util.*;
-import org.mskcc.oncokb.curation.domain.Alteration;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
 import org.mskcc.oncokb.curation.domain.enumeration.MutationConsequence;
 import org.springframework.stereotype.Service;
 

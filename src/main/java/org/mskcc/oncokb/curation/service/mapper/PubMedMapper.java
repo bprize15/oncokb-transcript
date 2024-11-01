@@ -3,7 +3,7 @@ package org.mskcc.oncokb.curation.service.mapper;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import org.mskcc.oncokb.curation.domain.Article;
+import org.mskcc.oncokb.curation.domain.Article.Article;
 import org.mskcc.oncokb.curation.service.dto.pubmed.PubMedDTO;
 import org.mskcc.oncokb.curation.util.GsonUtils;
 import org.springframework.stereotype.Service;

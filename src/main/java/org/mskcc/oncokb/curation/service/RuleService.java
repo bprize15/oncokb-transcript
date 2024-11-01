@@ -2,7 +2,7 @@ package org.mskcc.oncokb.curation.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.Rule;
+import org.mskcc.oncokb.curation.domain.Rule.Rule;
 import org.mskcc.oncokb.curation.repository.RuleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

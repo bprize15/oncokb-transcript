@@ -2,8 +2,10 @@ package org.mskcc.oncokb.curation.service;
 
 import jakarta.persistence.criteria.JoinType;
 import java.util.List;
-import org.mskcc.oncokb.curation.domain.*; // for static metamodels
-import org.mskcc.oncokb.curation.domain.FdaDrug;
+import org.mskcc.oncokb.curation.domain.Drug.Drug_;
+import org.mskcc.oncokb.curation.domain.FdaDrug.FdaDrug;
+import org.mskcc.oncokb.curation.domain.FdaDrug.FdaDrug_;
+import org.mskcc.oncokb.curation.domain.FdaSubmission.FdaSubmission_;
 import org.mskcc.oncokb.curation.repository.FdaDrugRepository;
 import org.mskcc.oncokb.curation.service.criteria.FdaDrugCriteria;
 import org.slf4j.Logger;

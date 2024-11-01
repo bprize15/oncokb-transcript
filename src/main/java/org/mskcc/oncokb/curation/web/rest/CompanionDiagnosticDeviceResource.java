@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice;
+import org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice.CompanionDiagnosticDevice;
 import org.mskcc.oncokb.curation.repository.CompanionDiagnosticDeviceRepository;
 import org.mskcc.oncokb.curation.service.CompanionDiagnosticDeviceQueryService;
 import org.mskcc.oncokb.curation.service.CompanionDiagnosticDeviceService;
@@ -31,7 +31,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice}.
+ * REST controller for managing {@link org.mskcc.oncokb.curation.domain.CompanionDiagnosticDevice.CompanionDiagnosticDevice}.
  */
 @RestController
 @RequestMapping("/api")

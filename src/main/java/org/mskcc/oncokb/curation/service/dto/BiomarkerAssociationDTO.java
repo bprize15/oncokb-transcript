@@ -3,7 +3,7 @@ package org.mskcc.oncokb.curation.service.dto;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import org.mskcc.oncokb.curation.domain.Gene;
+import org.mskcc.oncokb.curation.domain.Gene.Gene;
 
 /**
  * A DTO for the {@link org.mskcc.oncokb.curation.domain.BiomarkerAssociation} entity.

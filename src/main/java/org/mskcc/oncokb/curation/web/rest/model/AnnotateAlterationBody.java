@@ -1,7 +1,7 @@
 package org.mskcc.oncokb.curation.web.rest.model;
 
 import java.io.Serializable;
-import org.mskcc.oncokb.curation.domain.Alteration;
+import org.mskcc.oncokb.curation.domain.Alteration.Alteration;
 import org.mskcc.oncokb.curation.domain.enumeration.ReferenceGenome;
 
 public class AnnotateAlterationBody implements Serializable {
